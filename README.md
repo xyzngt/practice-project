@@ -1,6 +1,6 @@
 # 分布式中级训练营课后作业
 
-## 作业1
+## 作业1 order-user-sync-service
 
 ## 作业2
 

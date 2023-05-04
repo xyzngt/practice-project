@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: ORDER-SERVICE
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+        namespace: 866feeb6-c8de-4c69-b469-f3b71fe89d58
+  config:
+    import: nacos:${spring.application.name}.yml?refresh=true

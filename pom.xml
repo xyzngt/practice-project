@@ -10,6 +10,7 @@
     <modules>
         <module>order-gray-version-service</module>
         <module>order-user-sync-service</module>
+        <module>seata-trans-service</module>
     </modules>
 
 </project>

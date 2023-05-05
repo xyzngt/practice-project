@@ -1,0 +1,97 @@
+server:
+  port: 8080
+spring:
+  application:
+    name:  ACCOUNT
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/order
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 600000
+      timeBetweenEvictionRunsMillis: 600000
+      minEvictableIdleTimeMillis: 300000
+      validation-query:
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 配置监控统计拦截器filters，去掉h后监控界面sql无法统计，‘wall’用于防火墙
+      filters: stat,wall,slf4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true,druid.stat.slowSqlMillis=500
+      stat-view-servlet:
+        # 需要账号密码才能访问控制台，默认为root
+        login-username: admin
+        login-password: admin
+        # 是否启用StatViewServlet默认值true
+        enabled: true
+        # 访问路径为/druid时，跳转到StatViewServlet
+        url-pattern: /druid/*
+        # 是否能够重置数据
+        reset-enable: false
+        # IP白名单
+        allow: 127.0.0.1
+        # IP黑名单（共同存在时，deny优先于allow）
+        deny:
+  jpa:
+    show-sql: true  #控制台显示SQL
+    database: mysql
+    hibernate:
+      ddl-auto: update  #更新或者创建数据表结构
+    open-in-view: false
+  redis:
+    port: 6379
+    host: 127.0.0.1
+    database: 0
+    lettuce:
+      pool:
+        max-active: 32
+        max-idle: 16
+        min-idle: 8
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    #  支持发布确认
+    publisher-confirm-type: correlated
+    #  支持发布返回
+    publisher-returns: true
+    listener:
+      simple:
+        #  采用手动应答
+        acknowledge-mode: none
+        #  当前监听容器数
+        concurrency: 1
+        #  最大数
+        max-concurrency: 1
+        #  是否支持重试
+        retry:
+          enabled: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+bf:
+  expectedInsertions: 100000
+  fpp: 0.001
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: "SEATA_GROUP"
+      namespace: ""
+      username: "nacos"
+      password: "nacos"
+  tx-service-group: default_tx_group

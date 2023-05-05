@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
 /**
  * GrayVersionLoadBalancerConfiguration class
  *
- * @author zhangl
+ * @author xyzngtt
  * @date 2023/5/4 17:13
  */
 @ConditionalOnDiscoveryEnabled

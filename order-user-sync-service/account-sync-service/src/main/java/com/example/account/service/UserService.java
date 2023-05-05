@@ -4,8 +4,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.account.entity.User;
 
 public interface UserService extends IService<User> {
-
-    User getUserById(long id);
+    /**
+     * 通过userId 获取User
+     * @param userId userId
+     * @return User
+     */
+    User getUserById(long userId);
 
     /**
      * 创建用户信息
@@ -20,11 +24,5 @@ public interface UserService extends IService<User> {
      * @return User
      */
     User updateUser( User user);
-
-    /**
-     * 删除用户
-     * @param id 用户信息id
-     */
-    void deleteUserById(long id);
 
 }

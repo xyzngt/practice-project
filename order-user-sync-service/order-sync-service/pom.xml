@@ -111,10 +111,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
     </dependencies>
 
 
@@ -135,7 +131,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.gray.business.BusinessServiceApplication</mainClass>
+                    <mainClass>com.example.order.OrderServiceApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

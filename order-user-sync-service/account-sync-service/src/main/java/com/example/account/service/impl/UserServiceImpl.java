@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+/**
+ * @author xyzngtt
+ */
 @Slf4j
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
@@ -47,9 +50,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User createUser(User userReq) {
+        if (userReq == null) {
+            throw new RuntimeException("userReq is null");
+        }
         User user = new User();
         BeanUtils.copyProperties(userReq, user);
-        user.setStatus("S");
         userMapper.insert(user);
         //刷新缓存并发送同步消息到order
         redisTemplate.opsForValue().set(String.format("%s::%s",ACCOUNT_CACHE_KEY,user.getId()),user);
@@ -59,10 +64,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return user;
     }
 
-    @Override
-    public void deleteUserById(long id) {
-        int count = userMapper.update(new User().setStatus("D"),new LambdaQueryWrapper<User>().eq(User::getId, id));
-    }
 
     @Override
     public User updateUser(User userReq) {

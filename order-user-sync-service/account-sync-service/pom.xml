@@ -130,7 +130,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.gray.business.BusinessServiceApplication</mainClass>
+                    <mainClass>com.example.account.AccountApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
